@@ -1,6 +1,7 @@
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
+import { useRoute } from 'ziggy-js';
 import {
     Sidebar,
     SidebarContent,
@@ -10,19 +11,12 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, BotMessageSquare, Folder, LayoutGrid } from 'lucide-react';
 import AppLogo from './app-logo';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
+
 
 const footerNavItems: NavItem[] = [
     {
@@ -38,13 +32,26 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
+    const route = useRoute();
+    const mainNavItems: NavItem[] = [
+    {
+        title: 'Dashboard',
+        href: route('dashboard'),
+        icon: LayoutGrid,
+    },
+    {
+        title: 'AI Chat',
+        href: route('ai-chat.index'),
+        icon: BotMessageSquare,
+    }
+];
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href={dashboard()} prefetch>
+                            <Link href={route('dashboard')} prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>

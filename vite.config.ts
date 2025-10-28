@@ -1,7 +1,8 @@
-import { wayfinder } from '@laravel/vite-plugin-wayfinder';
+// import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
+import path, { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -17,10 +18,15 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
+        // wayfinder({
+        //     formVariants: true,
+        // }),
     ],
+    resolve: {
+        alias: {
+            'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
+        },
+    },
     esbuild: {
         jsx: 'automatic',
     },
