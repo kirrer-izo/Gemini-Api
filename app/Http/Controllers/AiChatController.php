@@ -8,9 +8,9 @@ use App\Http\Requests\UpdateAiChatRequest;
 
 class AiChatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public $prompt;
+    
     public function index()
     {
         return inertia('AIChats/Index');
@@ -21,7 +21,7 @@ class AiChatController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
